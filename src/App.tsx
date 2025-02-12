@@ -27,7 +27,7 @@ function App() {
             showToast("All the messages can be editted", "warning", 5000)
           }
         >
-          Custom
+          Show Warning
         </button>
       </div>
     </>
