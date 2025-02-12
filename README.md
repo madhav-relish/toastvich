@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a fully functional frontend toast notification system built with React. It provides a comprehensive and customizable way to deliver user feedback and alerts within a web application. The toast notifications are designed to be independent, reusable, and easily integrated into any part of the application.
+This project is a fully functional frontend toast notification system built with React + TS, making it completely type safe. It provides a comprehensive and customizable way to deliver user feedback and alerts within a web application. The toast notifications are designed to be independent, reusable, and easily integrated into any part of the application.
 
 ## Key Features
 
@@ -16,16 +16,29 @@ This project is a fully functional frontend toast notification system built with
 
 To use the toast notification system in your project, import the toast component and integrate it into your React application. Customize the toast messages and display duration as needed. The system supports both default and custom toast types, allowing you to tailor notifications to your application's requirements.
 
-
+```
 import { ToastProvider } from "./hooks/useToast";
 const App = () => (
 <ToastProvider>
     <App/>
 </ToastProvider>
-
+```
 
 You can then use the `useToast` hook to show notifications:
+```
 const { showToast } = useToast();
-showToast({ message: "This is a success toast!", type: "success" });
+showToast({ message: "This is a success toast!", type: "success", duration: 5000 });
+```
 
 
+Add custom JSX to render your own toast:
+```
+showToast({
+   render: (
+        <div className="bg-red-700 px-2">
+            This is a JSX rendered toast
+        </div>
+              ),
+    type: "default",
+})
+```
