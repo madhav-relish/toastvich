@@ -26,10 +26,10 @@ const ToastContainer = () => {
 };
 
 const Toast = ({ toast }: { toast: toastType }) => {
-    const context = useContext(ToastContext);
-    if (!context) return null;
-  
-    const { removeToast } = context;
+  const context = useContext(ToastContext);
+  if (!context) return null;
+
+  const { removeToast } = context;
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -38,22 +38,25 @@ const Toast = ({ toast }: { toast: toastType }) => {
     return () => clearTimeout(timer);
   }, [toast]);
 
-  const closeToast = ()=>{
+  const closeToast = () => {
     setShow(false);
     setTimeout(() => removeToast(toast.id), 500);
-  }
+  };
 
   return (
     <div
-    className={`flex items-center justify-between p-3 rounded shadow-md transition-all duration-500 ease-in-out transform ${
-      show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
-    } ${toastStyles[toast.type ?? "default"]}`}
-  >
-    <span>{toast.message}</span>
-    <button className="ml-4 text-white bg-black px-2 py-1 rounded hover:bg-gray-800" onClick={closeToast}>
-      ✖
-    </button>
-  </div>
+      className={`flex items-center justify-between p-3 rounded shadow-md transition-all duration-500 ease-in-out transform ${
+        show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
+      } ${toastStyles[toast.type ?? "default"]}`}
+    >
+      <span>{toast.message}</span>
+      <button
+        className="ml-4 text-white bg-black px-2 py-1 rounded hover:bg-gray-800"
+        onClick={closeToast}
+      >
+        ✖
+      </button>
+    </div>
   );
 };
 

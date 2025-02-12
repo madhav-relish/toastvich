@@ -3,7 +3,9 @@ import { createContext, useContext, useState } from "react";
 import { toastContextType, toastType } from "../types/toastTypes";
 import ToastContainer from "../components/toast";
 
-export const ToastContext = createContext<toastContextType | undefined>(undefined);
+export const ToastContext = createContext<toastContextType | undefined>(
+  undefined
+);
 
 export const useToast = () => {
   const context = useContext(ToastContext);
@@ -29,14 +31,14 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     }, duration);
   };
 
-  const removeToast = (id: number)=>{
+  const removeToast = (id: number) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
-  }
+  };
 
   return (
     <ToastContext.Provider value={{ showToast, toasts, removeToast }}>
       {children}
-      <ToastContainer/>
+      <ToastContainer />
     </ToastContext.Provider>
   );
 };
