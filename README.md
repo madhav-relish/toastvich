@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+# Toast Notification System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This project is a fully functional frontend toast notification system built with React. It provides a comprehensive and customizable way to deliver user feedback and alerts within a web application. The toast notifications are designed to be independent, reusable, and easily integrated into any part of the application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+- **Independent and Reusable**: The toast component is self-contained, allowing for easy integration throughout the application.
+- **Configurable Delay**: Customize the display duration of each toast notification to suit your needs.
+- **Actionable Toasts**: Users can interact with toasts through clicks or other actions, enhancing user experience.
+- **Default Toast Types**: Predefined toast types are included for success, info, error, and warning messages.
+- **Custom Toast Support**: Flexibility to create custom toast messages with unique content and styling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Usage
 
-- Configure the top-level `parserOptions` property like this:
+To use the toast notification system in your project, import the toast component and integrate it into your React application. Customize the toast messages and display duration as needed. The system supports both default and custom toast types, allowing you to tailor notifications to your application's requirements.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+import { ToastProvider } from "./hooks/useToast";
+const App = () => (
+<ToastProvider>
+    <App/>
+</ToastProvider>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+You can then use the `useToast` hook to show notifications:
+const { showToast } = useToast();
+showToast({ message: "This is a success toast!", type: "success" });
+
+
