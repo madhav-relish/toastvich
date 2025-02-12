@@ -18,13 +18,14 @@ export const useToast = () => {
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasts, setToasts] = useState<toastType[]>([]);
 
-  const showToast = (
-    message: string,
-    type: toastType["type"] = "default",
-    duration: number = 3000
-  ) => {
-    const id = Date.now();
-    setToasts((prev) => [...prev, { id, message, type, duration }]);
+  const showToast = ({
+    message,
+    type = "default",
+    duration = 3000,
+    render,
+  }: Omit<toastType, "id">) => {
+    const id = Math.random()*8123;
+    setToasts((prev) => [...prev, { id, message, type, duration, render }]);
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));

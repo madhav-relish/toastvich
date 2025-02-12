@@ -1,16 +1,29 @@
 import { useContext, useEffect, useState } from "react";
 import { ToastContext } from "../hooks/useToast";
 import { toastType } from "../types/toastTypes";
-import { CheckCircleIcon, XCircleIcon, InfoIcon, AlertTriangleIcon } from "lucide-react";
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  InfoIcon,
+  AlertTriangleIcon,
+} from "lucide-react";
 
 const toastStyles = {
-  success: { className: "bg-green-600 text-white", icon: <CheckCircleIcon size={20} /> },
-  error: { className: "bg-red-600 text-white", icon: <XCircleIcon size={20} /> },
+  success: {
+    className: "bg-green-600 text-white",
+    icon: <CheckCircleIcon size={20} />,
+  },
+  error: {
+    className: "bg-red-600 text-white",
+    icon: <XCircleIcon size={20} />,
+  },
   info: { className: "bg-blue-600 text-white", icon: <InfoIcon size={20} /> },
-  warning: { className: "bg-yellow-600 text-black", icon: <AlertTriangleIcon size={20} /> },
-  default: { className: "bg-gray-600 text-white", icon: null }, 
+  warning: {
+    className: "bg-yellow-600 text-black",
+    icon: <AlertTriangleIcon size={20} />,
+  },
+  default: { className: "bg-gray-600 text-white", icon: null },
 };
-
 
 const ToastContainer = () => {
   const context = useContext(ToastContext);
@@ -53,7 +66,14 @@ const Toast = ({ toast }: { toast: toastType }) => {
         show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
       } ${className}`}
     >
-      <span className="flex items-center gap-2">{icon}{toast.message}</span>
+      {toast.render ? (
+        toast.render
+      ) : (
+        <span className="flex items-center gap-2">
+          {icon}
+          {toast.message}
+        </span>
+      )}
       <span
         className=" text-white cursor-pointer px-2 py-1 "
         onClick={closeToast}
