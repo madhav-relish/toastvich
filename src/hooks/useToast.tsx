@@ -29,8 +29,12 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     }, duration);
   };
 
+  const removeToast = (id: number)=>{
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  }
+
   return (
-    <ToastContext.Provider value={{ showToast, toasts }}>
+    <ToastContext.Provider value={{ showToast, toasts, removeToast }}>
       {children}
       <ToastContainer/>
     </ToastContext.Provider>
