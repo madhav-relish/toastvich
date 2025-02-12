@@ -3,11 +3,11 @@ import { ToastContext } from "../hooks/useToast";
 import { toastType } from "../types/toastTypes";
 
 const toastStyles = {
-  success: "bg-green-500 text-white",
-  error: "bg-red-500 text-white",
-  info: "bg-blue-500 text-white",
-  warning: "bg-yellow-500 text-black",
-  default: "bg-gray-500 text-white",
+  success: "bg-green-600 text-white",
+  error: "bg-red-600 text-white",
+  info: "bg-blue-600 text-white",
+  warning: "bg-yellow-600 text-black",
+  default: "bg-gray-600 text-white",
 };
 
 const ToastContainer = () => {
@@ -45,17 +45,17 @@ const Toast = ({ toast }: { toast: toastType }) => {
 
   return (
     <div
-      className={`flex items-center justify-between p-3 rounded shadow-md transition-all duration-500 ease-in-out transform ${
+      className={`flex min-w-96 items-center justify-between p-3 rounded shadow-md transition-all duration-500 ease-in-out transform ${
         show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
       } ${toastStyles[toast.type ?? "default"]}`}
     >
       <span>{toast.message}</span>
-      <button
-        className="ml-4 text-white bg-black px-2 py-1 rounded hover:bg-gray-800"
+      <span
+        className=" text-white cursor-pointer px-2 py-1 "
         onClick={closeToast}
       >
         ✖
-      </button>
+      </span>
     </div>
   );
 };
