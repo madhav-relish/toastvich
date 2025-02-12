@@ -1,24 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import useToast from './hooks/useToast'
+import "./App.css";
+import { useToast } from "./hooks/useToast";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const {toast} = useToast({message:"Hello, This is a test message"})
+  const { showToast } = useToast();
 
   return (
     <>
-      <div className=''>
-        <button onClick={()=>console.log("TOAST::", toast)}>Success</button>
-        <button>Failure</button>
-        <button>Info</button>
-        <button>Default</button>
-        <button>Custom</button>
+      <div className="flex gap-2">
+        <button onClick={() => showToast("This is a Success Toast!", "success")}>
+          Show Success
+        </button>
+        <button onClick={() => showToast("This is a Error Toast!", "error")}>Show Error</button>
+        <button onClick={() => showToast("This is a Info Message Toast", "info", 5000)}>
+          Show Info
+        </button>
+        <button onClick={() => showToast("All the messages can be editted", "warning", 5000)}>
+          Custom
+        </button>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
