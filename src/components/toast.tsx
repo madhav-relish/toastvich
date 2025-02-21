@@ -32,7 +32,7 @@ const ToastContainer = () => {
   const { toasts } = context;
 
   return (
-    <div className="fixed top-5 right-5 space-y-2">
+    <div className="p-2 space-y-2">
       {toasts.map((toast) => (
         <Toast key={toast.id} toast={toast} />
       ))}
@@ -58,14 +58,38 @@ const Toast = ({ toast }: { toast: toastType }) => {
     setTimeout(() => removeToast(toast.id), 500);
   };
 
+  const getValueforPosition = (position: string) => {
+    if (position === "top-left") {
+      return "left-0 top-0";
+    }
+    if (position === "top-right") {
+      return "right-0 top-0";
+    }
+    if (position === "bottom-left") {
+      return "bottom-0 left-0";
+    }
+    if (position === "bottom-right") {
+      return "bottom-0 right-0";
+    }
+  };
+
   const { className, icon } = toastStyles[toast.type ?? "default"];
 
   return (
+    <div className={`
+      fixed 
+       ${getValueforPosition(toast.position || "")}
+  `}>
+
     <div
       className={`flex min-w-96 items-center justify-between p-3 rounded shadow-md transition-all duration-500 ease-in-out transform ${
         show ? "opacity-100 translate-x-0" : "opacity-0 translate-x-5"
-      } ${className}`}
-    >
+      } 
+    
+      ${className}
+      
+      `}
+      >
       {toast.render ? (
         toast.render
       ) : (
@@ -77,10 +101,11 @@ const Toast = ({ toast }: { toast: toastType }) => {
       <span
         className=" text-white cursor-pointer px-2 py-1 "
         onClick={closeToast}
-      >
+        >
         ✖
       </span>
     </div>
+        </div>
   );
 };
 

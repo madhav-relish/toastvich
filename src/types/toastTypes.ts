@@ -5,7 +5,8 @@ export interface toastType {
     message?: string;
     type: "success" | "error" | "info" | "warning" | "default";
     duration?: number;
-    render?: React.ReactNode
+    render?: React.ReactNode;
+    position?: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center"
 }
 
 export interface toastContextType {

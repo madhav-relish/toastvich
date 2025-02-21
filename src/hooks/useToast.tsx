@@ -23,9 +23,10 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     type = "default",
     duration = 3000,
     render,
+    position = "bottom-center"
   }: Omit<toastType, "id">) => {
     const id = Math.random()*8123;
-    setToasts((prev) => [...prev, { id, message, type, duration, render }]);
+    setToasts((prev) => [...prev, { id, message, type, duration, render, position }]);
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
